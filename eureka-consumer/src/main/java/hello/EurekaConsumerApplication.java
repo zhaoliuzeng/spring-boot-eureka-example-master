@@ -29,19 +29,3 @@ public class EurekaConsumerApplication {
     }
 }
 
-@RestController
-class ConsumerRestController {
-
-    private final RestTemplate restTemplate;
-
-    @Autowired
-    public ConsumerRestController(RestTemplate restTemplate){
-        this.restTemplate = restTemplate;
-    }
-
-    @RequestMapping("/")
-    public String index() {
-        ResponseEntity<String> response = this.restTemplate.getForEntity("http://eureka-client/whoami", String.class);
-        return response.getBody();
-    }
-}
